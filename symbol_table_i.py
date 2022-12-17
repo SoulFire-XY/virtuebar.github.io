@@ -3,9 +3,9 @@
 ################################
 
 class SymbolTable:
-    def __init__(self):
+    def __init__(self, parent=None):
         self.symbols = {} # global Vars
-        self.parent = None # Local Vars e.g:- Inside function
+        self.parent = parent # Local Vars e.g:- Inside function
 
     def get(self, name):
         value = self.symbols.get(name, None)

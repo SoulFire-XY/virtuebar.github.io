@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="SHORTCUT ICON" href="../../Images/Icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type='text/css' href="wiki.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>VirtueBar</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">VirtueBar</a>
+        <div class="group">
+            <ul class="navigation">
+                <li><a href="../Home/Home.html">Home</a></li>
+                <li><a href="">Wiki</a></li>
+                <li><a href="../Download/Download.html">Downloads</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="search">
+                <span class="icon">
+                    <ion-icon name="search-sharp" class="SearchBtn"></ion-icon>
+                    <ion-icon name="close-sharp" class="CloseBtn"></ion-icon>
+                </span>
+            </div>
+            <div class="searchBox">
+              <input type="text" placeholder="Search Here..">
+            </div>
+        </div>
+    </header>
+
+    <section class="text">
+      <section class="text-gray-600 body-font text">
+        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+          <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="../../Images/Icon Dark.png">
+          <div class="text-center lg:w-2/3 w-full">
+            <h1 class="printContainerLarge text text-center">How to Code in VirtueBar?</h1>
+          </div>
+        </div>
+      </section>
+
+      <p class="text text-center printContainerSmall justify-center flex-col infotext"> This might be a big question for you that "<i>how to code in VirtueBar?</i> " or "<i>where to start learning?</i> " . <br>You have come to the right place. The Official Wiki of VirtueBar handwritten by the developer and designer of the language.<br>Now without wasting our time, lets get started.</p>
+    </section>
+
+    <section>
+      <div class="text-center lg:w-2/3 w-full">
+        <h1 class="py-24 printContainerMedium text infotext headers"><u>Insight about VirtueBar:</u></h1>
+      </div>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        VirtueBar is a simple, East-to-learn, high level programming language developed by a single person in python and bare code from scratch. It is in development and many features are yet to be added.
+      </p>
+    </section>
+
+      #Grammer ########################################################################################################################################################################
+    <section>
+      <div class="text-center lg:w-2/3 w-full">
+        <h1 class="py-24 printContainerMedium text infotext headers"><u>Grammer:</u></h1>
+      </div>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>Expression</b><br>=> KEYWORD:VAR IDENTIFIER Equals Expression <br> => Comparison-Expression ((KEYWORD:[WITH|OR] Comparison-Expression) *Optional
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>Comparison
+          Expression</b><br>=> Arithmetic-Expression ((DE|LT|GT|LTE|GTE|NT) Arithmetic-Expression) *Optional <br> => INVER Comparison-Expression (NOT operations)
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>Arithmatic
+          Expression</b><br>=> term ((PLUS | MINUS) term) *Optional
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>Term</b><br>=> factor ((MUL | DIV) factor) *Optional
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>Factor</b><br>=> (PLUS | MINUS) factor<br>Power
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>Power</b><br>=> atom (POWER factor) *Optional
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>Atom</b><br>=> INT|FLOAT|IDENTIFIER <br>LPAREN Expression RPAREN
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>If Expression</b>
+        <br>=> KEYWORD:IF Expression KEYWORD:ACT Expression 
+        <br>=> (KEYWORD:ELIF Expression KEYWORD:ACT Expression) *Optional and Unlimited
+        <br>=> (KEYWORD:OTHER Expression) *Optional
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>For Loop Expression</b>
+        <br>=> KEYWORD:FOR IDENTIFIER Equals Expression KEYWORD:TO Expression KEYWORD:ACT Expression <br>
+        =>KEYWORD:FOR IDENTIFIER Equals Expression KEYWORD:TO Expression (KEYWORD:STEP Expression) KEYWORD:ACT Expression
+      </p>
+      <br>
+      <p class="text text-center printContainerSmall justify-center flex-col infotext">
+        <b>While Loop Expression</b><br>=> KEYWORD:WHILE Expression KEYWORD:ACT Expression
+      </p>
+    </section>
+
+    #Syntax ########################################################################################################################################################################
+
+    <section>
+      <div class="text-center lg:w-2/3 w-full">
+        <h1 class="py-24 printContainerMedium text infotext headers"><u>Syntax and Shell:</u></h1>
+      </div>
+    </section>
+
+    #Footer End ########################################################################################################################################################################
+    <footer class="text-gray-600 body-font text">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            
+            <span class="ml-3 text-xl text">VirtueBar</span>
+          </a>
+          <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 text">© 2022 VirtueBarOffik —
+            <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1 text" rel="noopener noreferrer" target="_blank">@Soulfire - XYZ</a>
+          </p>
+          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+          </span>
+        </div>
+      </footer>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="wiki.js"></script>
+    </body>
+    </html> 

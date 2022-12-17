@@ -1,0 +1,52 @@
+
+|                                                        Official VirtueBar Documented Guide
+
+VirtueBar is a simple, East-to-learn, high level programming language developed by a single person in python and bare code from scratch. It is in development and many features are yet to be added. Hope you have a great type using my programming langauge.
+
+Keywords:
+- VAL - variable
+    -> Used to declare a Variable. Cannot be used Successively. Constants can be changed into variables.
+    Implementation:
+		VAL a = 1
+		1 + VAL a = 3
+		VAL a = 2 + 1
+
+- CONST - Constant
+	-> Used to declare a Constant. Cannot be used Successively. Cannot change 	variable to constant.
+    Implementation:
+		VAL a = 1
+		1 + VAL a = 3
+		VAL a = 2 + 1
+
+- WITH - and operator
+    -> Same as 'and' in other languages. Used in condition checking and state/boolean verification. Can be used multiple times.
+    Imprementation:
+		5 == 5 AND 3 != 4
+		IF 2 + 2 == 4 AND 1 + 3 == 4 ACT 1
+
+- OR - or operator
+	-> The 'or' operator, same as in other languages. Used in condition checking and state/boolean verification. Can be used multiple times.
+    Imprementation:
+		5 == 5 OR 3 != 4
+		IF 2 + 2 == 4 OR 1 + 3 == 4 ACT 1
+
+- INVER - not operator
+	-> Same as 'not' in other languages. Used to invert variables and boolean. Can be used multiple times.
+	Implementation:
+		!1 and !0
+
+Combination Keywords:
+	IF and ELIF Statements:
+		- IF - If statement
+		- ACT - Do if statement
+		- ELIF - Else If statement
+		- OTHER - Else statement
+
+	Loop Statements:
+		- FOR - For Loop statement
+		- WHILE - While Loop statement
+		- TO - In FOR Loop statement
+		- STEP - Amount of Value to skip while iterating
+
+
+

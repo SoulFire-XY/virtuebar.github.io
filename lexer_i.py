@@ -33,6 +33,19 @@ class Lexer:
 			elif self.current_char in LETTERS:
 				tokens.append(self.make_identifier())
 
+			elif self.current_char == '"':
+				tokens.append(self.make_string())
+
+			elif self.current_char == '%':
+				self.advance()
+
+				if self.current_char == '%':
+					self.skip_comment()
+
+			elif self.current_char in [';', '\n']:
+				tokens.append(Token(TT_NEWLINE, pos_start=self.pos))
+				self.advance()
+
 			elif self.current_char == '+':
 				tokens.append(Token(TT_PLUS, pos_start = self.pos))
 				self.advance()
@@ -60,11 +73,30 @@ class Lexer:
 						
 			elif self.current_char == ')':
 				tokens.append(Token(TT_RPAREN, pos_start = self.pos))
+				self.advance()				
+
+			elif self.current_char == '[':
+				tokens.append(Token(TT_LSQUARE, pos_start = self.pos))
 				self.advance()
+
+						
+			elif self.current_char == ']':
+				tokens.append(Token(TT_RSQUARE, pos_start = self.pos))
+				self.advance()
+
 
 			elif self.current_char == '~':
 				tokens.append(Token(TT_POWER, pos_start = self.pos))
 				self.advance()
+
+			elif self.current_char == '{':
+				tokens.append(Token(TT_LCRBRAC, pos_start= self.pos))
+				self.advance()
+
+			elif self.current_char == '}':
+				tokens.append(Token(TT_RCRBRAC, pos_start= self.pos))
+				self.advance()
+
 
 			elif self.current_char == '!':
 				tok, error = self.make_not_equals()
@@ -79,6 +111,14 @@ class Lexer:
 
 			elif self.current_char == '>':
 				tokens.append(self.make_greater_than())
+
+			elif self.current_char == ',':
+				tokens.append(Token(TT_COMMA, pos_start = self.pos))
+				self.advance()
+
+			elif self.current_char == ':':
+				tokens.append(Token(TT_COLON, pos_start = self.pos))
+				self.advance()
 
 			else:
 				pos_start = self.pos.copy()
@@ -141,6 +181,10 @@ class Lexer:
 			self.advance()
 			tok_type = TT_EE
 
+		elif self.current_char == '>':
+			self.advance()
+			tok_type = TT_ARROW
+
 		return Token(tok_type, pos_start = pos_start, pos_end = self.pos)
 
 	def make_less_than(self):
@@ -164,3 +208,37 @@ class Lexer:
 			tok_type = TT_GTE
 
 		return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
+
+	def make_string(self):
+		string = ''
+		pos_start = self.pos.copy()
+		escape_character = False
+		e_c_starter = '\\'
+		self.advance()
+
+		escape_characters = {
+			'n': '\n', #new line
+			't': '\t', #tab space
+			'r': '\r'  #carriage return
+		}
+		while self.current_char != None and (self.current_char != '"' or escape_character):
+			if escape_character:
+				string += escape_characters.get(self.current_char, self.current_char)
+				escape_character = False
+			else:
+				if self.current_char == e_c_starter:
+					escape_character = True
+				else:
+					string += self.current_char
+			self.advance()
+		
+		self.advance()
+		return Token(TT_STRING, string, pos_start, self.pos)
+
+	def skip_comment(self):
+		self.advance()
+
+		while self.current_char != '\n':
+			self.advance()
+
+		self.advance()
