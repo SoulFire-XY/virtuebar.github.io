@@ -1,0 +1,127 @@
+
+|                                                        Official VirtueBar Documented Guide
+
+VirtueBar is a simple, East-to-learn, high level programming language developed by a single person in python and bare code from scratch. It is in development and many features are yet to be added. Hope you have a great type using my programming langauge.
+
+Keywords:
+- VAL - variable
+    -> Used to declare a Variable. Cannot be used Successively. Constants can be changed into variables.
+    Implementation:
+		VAL a = 1
+		1 + VAL a = 3
+		VAL a = 2 + 1
+
+- CONST - Constant
+	-> Used to declare a Constant. Cannot be used Successively. Cannot change 	variable to constant.
+    Implementation:
+		VAL a = 1
+		1 + VAL a = 3
+		VAL a = 2 + 1
+
+- WITH - and operator
+    -> Same as 'and' in other languages. Used in condition checking and state/boolean verification. Can be used multiple times.
+    Imprementation:
+		5 == 5 AND 3 != 4
+		IF 2 + 2 == 4 AND 1 + 3 == 4 ACT 1
+
+- OR - or operator
+	-> The 'or' operator, same as in other languages. Used in condition checking and state/boolean verification. Can be used multiple times.
+    Imprementation:
+		5 == 5 OR 3 != 4
+		IF 2 + 2 == 4 OR 1 + 3 == 4 ACT 1
+
+- INVER - not operator
+	-> Same as 'not' in other languages. Used to invert variables and boolean. Can be used multiple times.
+	Implementation:
+		!1 > 0
+		!0 > 1
+
+
+
+Combination Keywords:
+	IF and ELIF Statements:
+		- IF - If statement
+		- ACT - Do if statement
+		- ELIF - Else If statement
+		- OTHER - Else statement
+
+		-> Combined Together to form and write Conditional statements. If mutiple lines of code are getting executed on execution then the if statement structure should end with the END keyword
+
+		Implementation:
+			Singleline (shell):
+				IF <condition> ACT <statement>
+				IF <condition> ACT <statement> ELIF <condition> ACT <statement>
+				IF <condition> ACT <statement> ELIF <condition> ACT <statement> OTHER <statement>
+				IF <condition> ACT <statement> OTHER <statement>
+
+			Multiline (file):
+			>	IF <condition> ACT; 
+					<statement>; 
+					<statement>; 
+				END
+
+			>	IF <condition> ACT; 
+					<statement>; 
+					<statement>;
+				ELIF <condition> ACT;
+					<statement>;
+					<statement>;
+				END
+
+			>	IF <condition> ACT; 
+					<statement>; 
+					<statement>;
+				OTHER;
+					<statement>;
+					<statement>;
+				END
+
+			>	IF <condition> ACT; 
+					<statement>; 
+					<statement>;
+				ELIF <condition> ACT;
+					<statement>;
+					<statement>;
+				OTHER;
+					<statement>;
+					<statement>;
+				END
+
+	Loop Statements:
+		- FOR - For Loop statement
+		- WHILE - While Loop statement
+		- TO - In FOR Loop statement
+		- STEP - Amount of Value to skip while iterating
+		
+		-> Combined Together to form and write Looping statements. If mutiple lines of code are getting executed on execution then the for/while statement structure should end with the END keyword
+
+		Implementation:
+
+			{* Meanings
+			ivar = Iterating Variable
+			spos = starting position/value
+			epos = ending position/value
+			sval = step value
+			}
+			Singleline (shell):
+				FOR <ivar> = <spos> TO <epos> ACT <statement>
+				FOR <ivar> = <spos> TO <epos> STEP <sval> ACT <statement>
+				WHILE <condition> ACT <statement>
+
+			Multiline (file):
+			>	FOR <ivar> = <spos> TO <epos> ACT;
+					<statement>;
+					<statement>;
+				END
+
+			>   FOR <ivar> = <spos> TO <epos> STEP <sval> ACT;
+					<statement>;
+					<statement>;
+				END
+
+			> WHILE <condition> ACT;
+				<statement>;
+				<statement>;
+			END
+
+	
