@@ -1,0 +1,171 @@
+Grammer:
+Statements     |> NEWLINE *(Zero or more) statement (NEWLINE+ statement) *(Zero or more) NEWLINE *(Zero or more)
+||
+Statement      |> KEYWORD:RETURN expr ?Optional
+||             |> KEYWORD:SKIP
+||             |> KEYWORD: BREAK
+||             |> expression
+||
+expression     |> KEYWORD:VAR IDENTIFIER EQ expr
+||             |> Comparison-expression ((KEYWORD:[WITH|OR]) Comparison-expression)*
+||
+(Comparison
+expression)    |> arithmatic-expression ((EE|LT|GT|LTE|GTE|NT) arithmatic-expression)*
+||             |> INVER Comparison-expression (NOT operations)
+||
+(arithmatic
+expression)    |> term ((PLUS | MINUS) term)*
+||
+term           |> factor ((MUL | DIV | COLON ?Only for list/tuple) factor)*
+||
+factor         |> (PLUS | MINUS) factor
+||             |> power
+||
+||  
+power          |> call (POWER factor)*
+||
+call           |> atom (LPAREN (expression (COMMA, expression) #Zero or more) ?Optional RPAREN) ?Optional
+||
+atom           |> INT|FLOAT|IDENTIFIER|STRING
+||             |> LPAREN expression RPAREN
+||             |> list-expression
+||             |> if-expression
+||             |> for-expression
+||             |> while-expression
+||             |> func-Declaration
+||
+if-expression  |> KEYWORD:IF expression KEYWORD:ACT NEWLINE
+||                  statement * # One or more of this expression NEWLINE 
+||				>(KEYWORD:ELIF expr KEYWORD:ACT NEWLINE
+||                  statement * # One or more of this expression)* # Zero or more of this expression NEWLINE
+||				>(KEYWORD:OTHER NEWLINE
+||                  statement * # One or more of this expression)? # Optional NEWLINE
+||              > KEYWORD:END $ Required if second or third rule is being used
+||
+for-expression |> KEYWORD:FOR IDENTIFIER EQ expr KEYWORD:TO NEWLINE
+||              statement * # One or more of this expression NEWLINE
+||				> (KEYWORD:STEP expression)? KEYWORD:ACT NEWLINE
+||              statement * # One or more of this expression NEWLINE
+||              > KEYWORD:END $ Required if multiple statements are being used
+||
+while-expr     |> KEYWORD:WHILE expr KEYWORD:ACT NEWLINE
+||                  <statement>|<statements>
+||              > KEYWORD:END $ Required if multiple statements are being used
+||
+list-expression|> LSQUARE (expr (COMMA, expression) #Zero or more) ?Optional RSQUARE
+
+Language Syntax:
+  |> Variable      )>  VAL      {name}        =   {value} (assignment)
+                        /\        /\          /\
+                      KEYWORD  INDENTIFIER    EQ
+
+                   )> %{name}%                 (access)
+
+  |> Operators
+        >> Logical operators
+            o> with
+            o> or
+            o> inver
+
+        >> Relational operators/ Comparison operators
+            o> ==
+            o> <=
+            o> >=
+            o> <
+            o> >
+            o> !=
+
+        >> Boolean operators
+            o> 1 # True
+            o> 0 # False
+
+  |> Built-ins
+      >> Variables
+          > True - 1
+          > False - 0
+  
+  |> Conditional Statements
+      >> Syntax:
+          > IF <condition> ACT NEWLINE <expression>|<expressions END>
+          > IF <condition> ACT NEWLINE <expression>|<expressions> NEWLINE <expression>|<expressions END>
+          > IF <condition> ACT NEWLINE <expression>|<expressions> ELIF <condition> ACT NEWLINE <expression>|<expressions END>
+          > IF <condition> ACT NEWLINE <expression>|<expressions> ELIF <condition> ACT NEWLINE <expression>|<expressions> OTHER <expression>|<expressions END>
+
+  |> Loops
+      >> Syntax:
+          >>> FOR Loop
+            > FOR <loop_item> = <start_value> TO <end_value> ACT NEWLINE <expression>|<expressions END>
+            > FOR <loop_item> = <start_value> TO <end_value> STEP <step_value> ACT NEWLINE <expression>|<expressions END>
+          >>> WHILE Loop
+            > WHILE <condition> ACT <expression>|<expressions END>
+
+  |> Functions
+      >> Syntax:
+          KEYWORD:FUNC IDENTIFIER ?Optional LPAREN (IDENTIFIER (COMMA IDENTIFIER) *Zero or more) ?Optional RPAREN ARROW 
+          <statement|RETURN <expression>>|<statements RETURN <expression> ?Optional END>
+
+  |> Strings
+      >> Syntax:
+          Normal -> "Text"
+          Quoted -> "Text with \" Quotes\" " > Text with "Quotes"
+          Backslash -> "\\" > "\"
+          Newline -> "\n"
+          Concatenate -> "Text1 " + "Text2" > "Text1 Text2"
+          Multiply -> "text " * 3 > "text text text "
+
+  |> Lists
+      >> Syntax:
+          Declaration -> []
+          Elements -> [ Element, Element ]
+          Concatenate -> [1, 2, 3] + 4 => [1, 2, 3, 4]
+          Multiply -> [1, 2, 3] * [3, 4, 5] > [1, 2, 3, 3, 4, 5]
+          Remove[Index Wise]:
+            }   Positive(From start) -> [1, 2, 3] - 1(Pov index) > [1, 3]
+            }   Negative(From end) -> [1, 2, 3] - -1(Neg index) > [1, 2]
+          Getting an item[Index Wise]:
+            list.{index}, 
+                } Positive [1, 2].0 > 1
+                } Negative [1, 2, 3].-1 > 2
+
+  |> Built-in Functions
+      >> TIN - type input *
+      >> PRET - print return *
+      >> POUT - print out *
+      >> TIN_INT - type input integer *
+      >> CLEAR - Clear screen *
+      >> FLOOR - rounds up and returns the nearest integer *
+      >> CEIL - rounds up and returns the smaller integer greater than or equal to a given number *
+      >> IS_NUM - checks if the value is number *
+      >> IS_STR - checks if the value is string *
+      >> IS_LIST - checks if the value is a list *
+      >> IS_FUNC - checks if the value is a function *
+      >> APPEND - appends value to list *
+      >> POP - removes value from list *
+      >> EXTEND - concatenate two lists *
+      >> SQ - squares a number *
+      >> CUBE - cubes a number *
+      >> TESS - Tessaracts a number *
+      >> ADD - adds two numbers *
+      >> SUB - subtracts two numbers *
+      >> MUL - multiplies two numbers *
+      >> DIV - divides two numbers *
+      >> SQRT - Square root *
+      >> CBRT - cube root *
+      >> RAN_INT - random integer between given two numbers *
+      >> RANGE - iterates from a range to other *
+      >> LEN - returns the length of the object *
+      >> RUN - run exter scripts/files of the extension *
+      >> MAP - calls the given function on each element of the given list and adds it. Returns the newly formed list *
+      >> JOIN - returns a string after adding iterating from the length of the given list and sperating by the given separator *
+      >> STAY - freezes the window and waits till a key a pressed. Continues if any code is written after that
+
+  |> Built-In Function Keywords
+      >> CONTINUE - Skips the loop without any further processing and starts the next one
+      >> RETURN - returns back a value
+      >> BREAK - breaks a loop without any further processing
+
+  |> Comments
+      >> Syntax:
+          :> 
+          
+current lines count = not counted yet
